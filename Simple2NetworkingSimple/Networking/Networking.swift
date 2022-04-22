@@ -17,9 +17,9 @@ protocol Networking {
 final class NetworkingManager: Networking {
     func getNews(_ completion: ((NewsModel) -> Void)?) {
         let appearance = Appearance()
-        let urlString = appearance.baseUrl + appearance.path
+        let urlString = appearance.baseUrl + appearance.version + appearance.path
         
-        guard let url = URL(string: urlString) else{
+        guard let url = URL(string: urlString) else {
             return
         }
         
@@ -49,7 +49,8 @@ final class NetworkingManager: Networking {
 private extension NetworkingManager {
     struct Appearance {
         let baseUrl = "https://api.spaceflightnewsapi.net"
-        let path = "/v3/info"
+        let path = "info"
+        let version = "/v3/"
         
         let requestHTTPMethodGet = "GET"
         let requestHTTPMethodPost = "POST"
